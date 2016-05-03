@@ -10,7 +10,9 @@
 
 # mini-rest-monitoring-os
 
-Simple monitoring of OS status for mini-rest 
+Simple monitoring of OS status for mini-rest.
+ 
+Makes OS info available using `os` module accessible via `express` `Router`. 
 
 
 If you have different needs regarding the functionality, please add a [feature request](https://github.com/alykoshin/mini-rest-monitoring-os/issues).
@@ -22,8 +24,127 @@ If you have different needs regarding the functionality, please add a [feature r
 npm install --save mini-rest-monitoring-os
 ```
 
+
 ## Usage
 
+``` 
+  //var MiniRestMonitoringOs = require('../lib/');
+  var MiniRestMonitoringOs = require('mini-rest-monitoring-os');
+  var express = require('express');
+  
+  app.use('/monitoring/os', MiniRestMonitoringOs());
+```
+
+Request `GET` to `/monitoring/os/` will return following: 
+
+```
+{
+  "EOL": "\n",
+  "arch": "x64",
+  "cpus": [
+    {
+      "model": "Intel(R) Core(TM) i7-3520M CPU @ 2.90GHz",
+      "speed": 3399,
+      "times": {
+        "user": 12739700,
+        "nice": 78600,
+        "sys": 2434700,
+        "idle": 64556200,
+        "irq": 0
+      }
+    },
+    {
+      "model": "Intel(R) Core(TM) i7-3520M CPU @ 2.90GHz",
+      "speed": 3399,
+      "times": {
+        "user": 13120100,
+        "nice": 52500,
+        "sys": 1946500,
+        "idle": 64571900,
+        "irq": 0
+      }
+    },
+    {
+      "model": "Intel(R) Core(TM) i7-3520M CPU @ 2.90GHz",
+      "speed": 3399,
+      "times": {
+        "user": 12243900,
+        "nice": 64300,
+        "sys": 2692700,
+        "idle": 64837200,
+        "irq": 0
+      }
+    },
+    {
+      "model": "Intel(R) Core(TM) i7-3520M CPU @ 2.90GHz",
+      "speed": 3399,
+      "times": {
+        "user": 13440800,
+        "nice": 44200,
+        "sys": 1918500,
+        "idle": 64645100,
+        "irq": 0
+      }
+    }
+  ],
+  "endianness": "LE",
+  "freemem": 5940674560,
+  "homedir": "/home/alykoshin",
+  "hostname": "al-nb-02",
+  "loadavg": [
+    1.01904296875,
+    0.85791015625,
+    0.94921875
+  ],
+  "networkInterfaces": {
+    "lo": [
+      {
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4",
+        "mac": "00:00:00:00:00:00",
+        "internal": true
+      },
+      {
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "mac": "00:00:00:00:00:00",
+        "scopeid": 0,
+        "internal": true
+      }
+    ],
+    "wlan0": [
+      {
+        "address": "192.168.1.32",
+        "netmask": "255.255.255.0",
+        "family": "IPv4",
+        "mac": "6c:88:14:8c:39:08",
+        "internal": false
+      },
+      {
+        "address": "fe80::6e88:14ff:fe8c:3908",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "mac": "6c:88:14:8c:39:08",
+        "scopeid": 3,
+        "internal": false
+      }
+    ]
+  },
+  "platform": "linux",
+  "release": "4.2.0-35-generic",
+  "tmpdir": "/tmp",
+  "totalmem": 16512585728,
+  "type": "Linux",
+  "uptime": 8140
+}
+```
+
+Request `GET` to `/monitoring/os/uptime` will return following: 
+```
+  8140
+```
 
 ## Credits
 [Alexander](https://github.com/alykoshin/)
